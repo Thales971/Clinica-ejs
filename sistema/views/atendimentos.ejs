@@ -1,0 +1,45 @@
+<%- include('partials/topo', { titulo: 'Atendimentos' }) %>
+<div class="cabecalho">
+    <div>
+        <h2>Atendimentos</h2>
+        <small style="color:#777">Ordenados da data mais próxima para a mais distante; no mesmo dia, pelo horário.</small>
+    </div>
+    <a href="/atendimentos/novo" class="btn btn-verde">+ Novo Atendimento</a>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Data</th>
+            <th>Horário</th>
+            <th>Criança</th>
+            <th>Responsável</th>
+            <th>Motivo</th>
+            <th>Situação</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% if (atendimentos.length === 0) { %>
+            <tr><td colspan="7" class="vazio">Nenhum atendimento cadastrado.</td></tr>
+        <% } else { %>
+            <% atendimentos.forEach(a => { %>
+                <tr class="<%= destaque === a.id ? 'destaque' : '' %>">
+                    <td><strong><%= formatarData(a.data_atendimento) %></strong></td>
+                    <td><%= formatarHora(a.horario) %></td>
+                    <td><%= a.crianca_nome %></td>
+                    <td><%= a.responsavel_nome %><br><small style="color:#777"><%= a.responsavel_telefone %></small></td>
+                    <td><%= a.motivo %></td>
+                    <td><span class="etiqueta <%= a.situacao %>"><%= a.situacao %></span></td>
+                    <td>
+                        <a href="/atendimentos/editar/<%= a.id %>" class="btn btn-azul">Editar</a>
+                        <form action="/atendimentos/deletar/<%= a.id %>" method="POST" class="inline" onsubmit="return confirm('Tem certeza que deseja excluir este atendimento?')">
+                            <button type="submit" class="btn btn-vermelho">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }); %>
+        <% } %>
+    </tbody>
+</table>
+<%- include('partials/rodape') %>

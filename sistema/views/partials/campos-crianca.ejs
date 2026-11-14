@@ -1,0 +1,21 @@
+<div class="campo">
+    <label for="nome">Nome da criança:</label>
+    <input type="text" id="nome" name="nome" required maxlength="100" value="<%= dados.nome || '' %>" placeholder="Ex: Pedro Santos">
+</div>
+<div class="campo">
+    <label for="data_nascimento">Data de nascimento:</label>
+    <input type="date" id="data_nascimento" name="data_nascimento" required max="<%= hoje %>" value="<%= dados.data_nascimento || '' %>">
+</div>
+
+<div class="campo">
+    <label for="responsavel_id">Responsável:</label>
+    <select id="responsavel_id" name="responsavel_id" required>
+        <option value="">-- Selecione o responsável --</option>
+        <% responsaveis.forEach(r => { %>
+            <option value="<%= r.id %>" <%= String(dados.responsavel_id) === String(r.id) ? 'selected' : '' %>><%= r.nome %></option>
+        <% }); %>
+    </select>
+    <% if (responsaveis.length === 0) { %>
+        <small style="color:#a12a2a">Nenhum responsável cadastrado. <a href="/responsaveis/novo">Cadastre um responsável</a> primeiro.</small>
+    <% } %>
+</div>

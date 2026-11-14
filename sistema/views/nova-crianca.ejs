@@ -1,0 +1,14 @@
+<%- include('partials/topo', { titulo: 'Nova Criança' }) %>
+<div class="cartao formulario">
+    <h2>Cadastrar Criança</h2>
+    <br>
+    <%- include('partials/erros') %>
+    <form action="/criancas/novo" method="POST">
+        <%- include('partials/campos-crianca') %>
+        <div class="acoes-form">
+            <a href="/criancas" class="btn btn-cinza">Cancelar</a>
+            <button type="submit" class="btn btn-verde">Salvar Criança</button>
+        </div>
+    </form>
+</div>
+<%- include('partials/rodape') %>

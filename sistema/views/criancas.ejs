@@ -1,0 +1,40 @@
+<%- include('partials/topo', { titulo: 'Crianças' }) %>
+<div class="cabecalho">
+    <h2>Crianças</h2>
+    <a href="/criancas/novo" class="btn btn-verde">+ Cadastrar Criança</a>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Nascimento</th>
+            <th>Responsável</th>
+            <th>Atendimentos</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% if (criancas.length === 0) { %>
+            <tr><td colspan="6" class="vazio">Nenhuma criança cadastrada.</td></tr>
+        <% } else { %>
+            <% criancas.forEach(c => { %>
+                <tr>
+                    <td><%= c.id %></td>
+                    <td><strong><%= c.nome %></strong></td>
+                    <td><%= formatarData(c.data_nascimento) %></td>
+                    <td><%= c.responsavel_nome %></td>
+                    <td><%= c.total_atendimentos %></td>
+                    <td>
+                        <a href="/criancas/editar/<%= c.id %>" class="btn btn-azul">Editar</a>
+                        <form action="/criancas/deletar/<%= c.id %>" method="POST" class="inline" onsubmit="return confirm('Tem certeza que deseja excluir esta criança?')">
+                            <button type="submit" class="btn btn-vermelho">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }); %>
+        <% } %>
+    </tbody>
+</table>
+<%- include('partials/rodape') %>

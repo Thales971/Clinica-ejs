@@ -1,0 +1,32 @@
+<div class="campo">
+    <label for="crianca_id">Criança:</label>
+    <select id="crianca_id" name="crianca_id" required>
+        <option value="">-- Selecione a criança --</option>
+        <% criancas.forEach(c => { %>
+            <option value="<%= c.id %>" <%= String(dados.crianca_id) === String(c.id) ? 'selected' : '' %>><%= c.nome %> (resp.: <%= c.responsavel_nome %>)</option>
+        <% }); %>
+    </select>
+    <% if (criancas.length === 0) { %>
+        <small style="color:#a12a2a">Nenhuma criança cadastrada. <a href="/criancas/novo">Cadastre uma criança</a> primeiro.</small>
+    <% } %>
+</div>
+<div class="campo">
+    <label for="data_atendimento">Data:</label>
+    <input type="date" id="data_atendimento" name="data_atendimento" required value="<%= dados.data_atendimento || '' %>">
+</div>
+<div class="campo">
+    <label for="horario">Horário:</label>
+    <input type="time" id="horario" name="horario" required value="<%= dados.horario || '' %>">
+</div>
+<div class="campo">
+    <label for="motivo">Motivo:</label>
+    <input type="text" id="motivo" name="motivo" required maxlength="200" value="<%= dados.motivo || '' %>" placeholder="Ex: Consulta de rotina">
+</div>
+<div class="campo">
+    <label for="situacao">Situação:</label>
+    <select id="situacao" name="situacao" required>
+        <% situacoes.forEach(s => { %>
+            <option value="<%= s %>" <%= dados.situacao === s ? 'selected' : '' %>><%= s %></option>
+        <% }); %>
+    </select>
+</div>

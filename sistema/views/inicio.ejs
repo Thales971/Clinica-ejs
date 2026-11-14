@@ -1,0 +1,36 @@
+<%- include('partials/topo', { titulo: 'Início' }) %>
+<style>
+    .modulos { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 20px; }
+    .modulo { background: white; border-radius: 8px; padding: 20px; text-decoration: none; color: #333; box-shadow: 0 2px 6px rgba(0,0,0,0.08); border-top: 4px solid #1f7a8c; }
+    .modulo:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+    .modulo .numero { font-size: 32px; font-weight: bold; color: #1f7a8c; }
+    .sessao { color: #777; font-size: 14px; margin-top: 24px; }
+</style>
+
+<h2>Olá, <%= usuario.nome %>!</h2>
+<p>Escolha um módulo para continuar.</p>
+
+<div class="modulos">
+    <a href="/responsaveis" class="modulo">
+        <div class="numero"><%= totais.responsaveis %></div>
+        <strong>Responsáveis</strong>
+        <p>Cadastro, edição, exclusão e busca por nome.</p>
+    </a>
+    <a href="/criancas" class="modulo">
+        <div class="numero"><%= totais.criancas %></div>
+        <strong>Crianças</strong>
+        <p>Crianças vinculadas aos seus responsáveis.</p>
+    </a>
+    <a href="/atendimentos" class="modulo">
+        <div class="numero"><%= totais.atendimentos %></div>
+        <strong>Atendimentos</strong>
+        <p>Agenda em ordem de data e horário.</p>
+    </a>
+</div>
+
+<p class="sessao">
+    Sessão configurada para expirar em <%= sessaoMinutos %> minuto(s)
+    <% if (expiraEm) { %>(às <%= new Date(expiraEm).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) %>)<% } %>.
+    Após esse tempo será necessário entrar novamente.
+</p>
+<%- include('partials/rodape') %>

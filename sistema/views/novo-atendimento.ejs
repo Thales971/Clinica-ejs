@@ -1,0 +1,14 @@
+<%- include('partials/topo', { titulo: 'Novo Atendimento' }) %>
+<div class="cartao formulario">
+    <h2>Novo Atendimento</h2>
+    <br>
+    <%- include('partials/erros') %>
+    <form action="/atendimentos/novo" method="POST">
+        <%- include('partials/campos-atendimento') %>
+        <div class="acoes-form">
+            <a href="/atendimentos" class="btn btn-cinza">Cancelar</a>
+            <button type="submit" class="btn btn-verde">Salvar Atendimento</button>
+        </div>
+    </form>
+</div>
+<%- include('partials/rodape') %>

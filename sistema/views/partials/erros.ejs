@@ -1,0 +1,7 @@
+<% if (erros && erros.length > 0) { %>
+    <div class="alerta erro">
+        <% erros.forEach(erro => { %>
+            <div><%= erro %></div>
+        <% }); %>
+    </div>
+<% } %>

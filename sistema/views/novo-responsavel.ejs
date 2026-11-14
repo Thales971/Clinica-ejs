@@ -1,0 +1,14 @@
+<%- include('partials/topo', { titulo: 'Novo Responsável' }) %>
+<div class="cartao formulario">
+    <h2>Cadastrar Responsável</h2>
+    <br>
+    <%- include('partials/erros') %>
+    <form action="/responsaveis/novo" method="POST">
+        <%- include('partials/campos-responsavel') %>
+        <div class="acoes-form">
+            <a href="/responsaveis" class="btn btn-cinza">Cancelar</a>
+            <button type="submit" class="btn btn-verde">Salvar Responsável</button>
+        </div>
+    </form>
+</div>
+<%- include('partials/rodape') %>

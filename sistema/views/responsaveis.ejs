@@ -1,0 +1,51 @@
+<%- include('partials/topo', { titulo: 'Responsáveis' }) %>
+<div class="cabecalho">
+    <h2>Responsáveis</h2>
+    <a href="/responsaveis/novo" class="btn btn-verde">+ Cadastrar Responsável</a>
+</div>
+
+<form action="/responsaveis" method="GET" class="busca" style="margin-bottom: 16px;">
+    <input type="text" name="busca" placeholder="Buscar por parte do nome..." value="<%= busca %>">
+    <button type="submit" class="btn btn-cinza">Buscar</button>
+    <% if (busca) { %>
+        <a href="/responsaveis" style="margin-left: 6px; font-size: 13px; color: #6c757d;">Limpar filtro</a>
+        <span style="margin-left: 10px; color: #555; font-size: 14px;"><%= responsaveis.length %> resultado(s) para "<%= busca %>"</span>
+    <% } %>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>E-mail</th>
+            <th>Telefone</th>
+            <th>Crianças</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% if (responsaveis.length === 0) { %>
+            <tr><td colspan="7" class="vazio">Nenhum responsável encontrado.</td></tr>
+        <% } else { %>
+            <% responsaveis.forEach(r => { %>
+                <tr>
+                    <td><%= r.id %></td>
+                    <td><strong><%= r.nome %></strong></td>
+                    <td><%= r.cpf %></td>
+                    <td><%= r.email %></td>
+                    <td><%= r.telefone %></td>
+                    <td><%= r.total_criancas %></td>
+                    <td>
+                        <a href="/responsaveis/editar/<%= r.id %>" class="btn btn-azul">Editar</a>
+                        <form action="/responsaveis/deletar/<%= r.id %>" method="POST" class="inline" onsubmit="return confirm('Tem certeza que deseja excluir este responsável?')">
+                            <button type="submit" class="btn btn-vermelho">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }); %>
+        <% } %>
+    </tbody>
+</table>
+<%- include('partials/rodape') %>

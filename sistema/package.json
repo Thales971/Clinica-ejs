@@ -1,0 +1,19 @@
+{
+  "name": "clinica-pediatrica-pequenos-passos",
+  "version": "1.0.0",
+  "description": "Sistema de gestão da Clínica Pediátrica Pequenos Passos (Node.js + Express + EJS + PostgreSQL)",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "gerar-hash": "node gerar-hash.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "pg": "^8.13.1"
+  }
+}
